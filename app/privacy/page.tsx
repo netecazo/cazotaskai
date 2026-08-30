@@ -73,17 +73,17 @@ export default function PrivacyPage() {
           Every connection uses OAuth, so you authorise us at the provider and can withdraw that
           authorisation at any time from their settings or ours. We request the narrowest scopes the
           automation you selected actually needs, and we show you each scope in plain English before
-          you approve it. Access and refresh tokens are encrypted at rest using envelope encryption
-          with keys held in a managed key service, separate from the application database. Tokens are
-          decrypted only in memory, only for the duration of a run.
+          you approve it. Access and refresh tokens are stored in a restricted table protected by
+          row-level security, reachable only by our server, and encrypted at rest by the database.
+          They are read only for the duration of a run and are never written to logs.
         </p>
 
         <h2 id="ai-processing">AI processing</h2>
         <p>
           Automations that draft, classify or summarise send the relevant content to a third-party AI
-          provider over an encrypted connection. We use those providers under enterprise or API terms
-          that prohibit training on data submitted through the API and require deletion after a short
-          retention window used only for abuse monitoring. <strong>Your content is never used to train
+          provider over an encrypted connection. We use those providers under API terms that prohibit
+          training on data submitted through the API and that limit retention to a short window used
+          only for abuse monitoring. <strong>Your content is never used to train
           our models or any public model</strong>, and we do not use one customer&apos;s data to improve
           another customer&apos;s results. We send the minimum content the step requires rather than the
           whole mailbox.

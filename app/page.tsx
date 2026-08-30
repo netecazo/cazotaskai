@@ -197,7 +197,7 @@ export default function HomePage() {
         {/* ===================== TRUST STRIP ===================== */}
         <div className="strip">
           <div className="wrap">
-            <p>Connects to the tools you already pay for</p>
+            <p>Built for the tools you already pay for</p>
             <div className="strip-row">
               <span><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"><rect x="2" y="4" width="20" height="16" rx="3"/><path d="m2 7 10 7 10-7"/></svg> Gmail</span>
               <span><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"><rect x="3" y="4" width="18" height="18" rx="3"/><path d="M16 2v4M8 2v4M3 10h18"/></svg> Calendar</span>
@@ -207,6 +207,11 @@ export default function HomePage() {
               <span><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"><path d="M3 6h18M3 12h18M3 18h12"/></svg> Sheets</span>
               <span><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"><rect x="3" y="3" width="18" height="18" rx="4"/><path d="M8 12h8M12 8v8"/></svg> Stripe</span>
             </div>
+            <p className="strip-note">
+              Slack connects today. The rest are built and tested, but are waiting on provider
+              review or key support before you can switch them on — you can see the live status of
+              each one inside your dashboard.
+            </p>
           </div>
         </div>
 

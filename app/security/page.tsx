@@ -28,11 +28,13 @@ export default function SecurityPage() {
           — is encrypted with AES-256 using managed keys.
         </p>
         <p>
-          Credentials for your connected tools get a second layer. OAuth access and refresh tokens are
-          encrypted individually with envelope encryption before they touch the database, using data
-          keys wrapped by a master key held in a managed key service that the application database has
-          no access to. A dump of the database on its own would not yield usable tokens. Tokens are
-          unwrapped in memory for the length of a run and are never written to logs.
+          Credentials for your connected tools are held in a dedicated table, isolated by row-level
+          security and reachable only by the server using a privileged key that is never exposed to
+          the browser. They inherit the database encryption described above, and are never written to
+          logs. Application-layer encryption of individual tokens, so that a database dump alone would
+          not yield usable credentials, is in progress and will be in place before general
+          availability. We would rather tell you where we are than imply a control we have not
+          shipped.
         </p>
 
         <h2 id="oauth">Connections and scope minimisation</h2>
@@ -51,8 +53,8 @@ export default function SecurityPage() {
         <h2 id="ai">AI provider handling</h2>
         <p>
           Automation steps that classify, summarise or draft send content to a third-party AI provider
-          over an encrypted connection. We hold enterprise or API terms with those providers that
-          prohibit training on submitted data. <strong>Your content is not used to train our models or
+          over an encrypted connection. We use those providers under API terms that prohibit
+          training on submitted data. <strong>Your content is not used to train our models or
           any public model.</strong> We send the smallest slice of content the step needs rather than
           the whole account, and we do not use one customer&apos;s data to produce another
           customer&apos;s results. Providers retain a short abuse-monitoring window as their terms
@@ -85,20 +87,19 @@ export default function SecurityPage() {
 
         <h2 id="infrastructure">Infrastructure</h2>
         <p>
-          We run on major cloud providers whose data centres hold SOC 2 Type II and ISO 27001
-          certifications, in UK, EU and US regions. Infrastructure is defined as code and changes go
-          through review. Backups are encrypted, taken continuously with point-in-time recovery, and
-          restore procedures are tested. Backups roll off within 35 days, which is why deleted data
-          takes up to 35 days to disappear from every copy rather than vanishing instantly.
+          We run on managed cloud platforms whose data centres hold SOC 2 Type II and ISO 27001
+          certifications. Our application and database currently run in a single United States region.
+          Backups are encrypted and taken by our database provider on their standard schedule; they
+          roll off within 35 days, which is why deleted data can take up to 35 days to disappear from
+          every copy rather than vanishing instantly.
         </p>
 
         <h2 id="development">Secure development</h2>
         <ul>
-          <li>Every change is peer-reviewed before it can reach production.</li>
-          <li>Automated dependency scanning and static analysis run on every commit.</li>
           <li>Secrets live in a managed secret store, never in the repository.</li>
-          <li>We patch high and critical severity vulnerabilities on a defined schedule.</li>
-          <li>Independent penetration testing is performed periodically and findings are tracked to closure.</li>
+          <li>Changes are reviewed before release, and the production build is verified on every deploy.</li>
+          <li>We track advisories against our dependencies and patch high and critical severity issues promptly.</li>
+          <li>We have not yet commissioned an independent penetration test. When we do, we will say so here and date it.</li>
         </ul>
 
         <h2 id="monitoring">Monitoring and incident response</h2>
@@ -113,12 +114,12 @@ export default function SecurityPage() {
 
         <h2 id="compliance">Compliance posture</h2>
         <p>
-          We process personal data in line with the UK GDPR, the EU GDPR and applicable US state
-          privacy laws, and we will sign a data processing agreement on request. Sub-processors are
-          bound by equivalent obligations, with standard contractual clauses covering international
-          transfers. We are being honest about certification status: our controls are built to the SOC 2
-          criteria and formal attestation is in progress rather than complete. If you need current
-          documentation for a vendor review, email us and we will send what we have.
+          We process personal data in line with applicable US state privacy laws including the
+          CCPA/CPRA, and with the UK and EU GDPR where they apply to you. We will sign a data
+          processing agreement on request. On certification status, plainly: we hold no SOC 2 or
+          ISO 27001 attestation of our own. Our infrastructure providers hold theirs, which is not the
+          same thing, and we will not imply otherwise. If you need documentation for a vendor review,
+          email us and we will send exactly what we have.
         </p>
 
         <h2 id="your-part">Your part</h2>
