@@ -36,9 +36,9 @@ export default function AboutPage() {
         </p>
 
         <p>
-          We are early. CazoTask is running with its first beta users right now, and we would rather
-          say that plainly than publish numbers we have not earned. If you want to be one of them,
-          or you just want to tell us what is eating your week, we read every email.
+          We are early. CazoTask has just launched and is open for early access, and we would rather
+          say that plainly than publish numbers we have not earned. If you want to be among the first
+          to use it, or you just want to tell us what is eating your week, we read every email.
         </p>
 
         <div className="glass contact">

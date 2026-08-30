@@ -78,7 +78,7 @@ export default function HomePage() {
 
                 <div className="stat-rail">
                   <div><strong className="grad-text">40+</strong><span>Ready automations</span></div>
-                  <div><strong className="grad-text">Beta</strong><span>Onboarding first users</span></div>
+                  <div><strong className="grad-text">Beta</strong><span>Open for early access</span></div>
                   <div><strong className="grad-text">No code</strong><span>Switch on, not build</span></div>
                 </div>
               </div>
@@ -373,20 +373,6 @@ export default function HomePage() {
                 </div>
               </article>
 
-            </div>
-          </div>
-        </section>
-
-        {/* ===================== METRICS BAND ===================== */}
-        <section style={{ paddingTop: '20px' }}>
-          <div className="wrap">
-            <div className="glass glass-strong band rv">
-              <span className="eyebrow">Where we are</span>
-              <h2 className="h1" style={{ margin: '14px 0 18px' }}>New product,<br />real results coming soon</h2>
-              <p className="lede" style={{ margin: '0 auto', maxWidth: '620px' }}>
-                We are running CazoTask with our first beta users right now. Real numbers — hours saved,
-                drafts approved — will replace this section as soon as we have them, not before.
-              </p>
             </div>
           </div>
         </section>
