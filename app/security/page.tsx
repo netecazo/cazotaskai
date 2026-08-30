@@ -28,13 +28,14 @@ export default function SecurityPage() {
           — is encrypted with AES-256 using managed keys.
         </p>
         <p>
-          Credentials for your connected tools are held in a dedicated table, isolated by row-level
-          security and reachable only by the server using a privileged key that is never exposed to
-          the browser. They inherit the database encryption described above, and are never written to
-          logs. Application-layer encryption of individual tokens, so that a database dump alone would
-          not yield usable credentials, is in progress and will be in place before general
-          availability. We would rather tell you where we are than imply a control we have not
-          shipped.
+          Credentials for your connected tools get a second layer. Each OAuth token is encrypted
+          individually with AES-256-GCM before it is written, under a key held in our deployment
+          secret store that the database has no access to. Because the cipher is authenticated, a
+          token that has been altered in storage fails to decrypt rather than being used. Tokens are
+          decrypted in memory only for the length of a run, are never written to logs, and a dump of
+          the database on its own would not yield usable credentials. This is a single-key scheme
+          rather than a key hierarchy with per-record data keys; we will say so here if that
+          changes.
         </p>
 
         <h2 id="oauth">Connections and scope minimisation</h2>

@@ -3,17 +3,21 @@ import { NextResponse } from 'next/server';
 export const dynamic = 'force-dynamic';
 import { supabaseAdmin } from '@/lib/supabase/admin';
 import { executeAutomation } from '@/lib/engine';
+import { safeEqual } from '@/lib/crypto';
 
 export const maxDuration = 300;
 
 /** Scheduler. Vercel calls this once a day at 06:00 UTC (see vercel.json). */
 export async function GET(req: Request) {
+  // Fail closed. Without a configured secret this endpoint would let anyone
+  // trigger every scheduled automation in the system.
   const secret = process.env.CRON_SECRET;
-  if (secret) {
-    const auth = req.headers.get('authorization');
-    if (auth !== `Bearer ${secret}`) {
-      return NextResponse.json({ error: 'Unauthorised' }, { status: 401 });
-    }
+  if (!secret) {
+    return NextResponse.json({ error: 'Scheduler is not configured' }, { status: 503 });
+  }
+  const auth = req.headers.get('authorization') ?? '';
+  if (!safeEqual(auth, `Bearer ${secret}`)) {
+    return NextResponse.json({ error: 'Unauthorised' }, { status: 401 });
   }
 
   const db = supabaseAdmin();

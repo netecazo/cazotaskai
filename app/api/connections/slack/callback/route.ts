@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import { supabaseServer } from '@/lib/supabase/server';
 import { supabaseAdmin } from '@/lib/supabase/admin';
 import { slackExchange } from '@/lib/slack';
+import { encryptSecret } from '@/lib/crypto';
 
 export async function GET(req: Request) {
   const url = new URL(req.url);
@@ -25,7 +26,8 @@ export async function GET(req: Request) {
     }, { onConflict: 'user_id,provider' }).select('id').single();
 
     await db.from('ct_connection_secrets').upsert({
-      connection_id: conn!.id, access_token: accessToken, updated_at: new Date().toISOString(),
+      connection_id: conn!.id, access_token: encryptSecret(accessToken),
+      updated_at: new Date().toISOString(),
     });
 
     return NextResponse.redirect(`${origin}/dashboard/connections?connected=slack`);

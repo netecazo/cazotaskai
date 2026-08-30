@@ -18,6 +18,7 @@ import { supabaseAdmin } from './supabase/admin';
 import { runAi, fillTemplate, aiConfigured } from './ai';
 import { limitsFor, periodStart } from './plans';
 import { postToSlack } from './slack';
+import { decryptSecret } from '@/lib/crypto';
 
 export type TriggerPayload = Record<string, unknown>;
 
@@ -198,10 +199,15 @@ async function performActions(
         continue;
       }
       const { data: secret } = await db.from('ct_connection_secrets')
-        .select('access_token').eq('connection_id', conn.id).single();
+        .select('access_token').eq('connection_id', conn.id).maybeSingle();
+
+      if (!secret?.access_token) {
+        done.push({ action, status: 'skipped', reason: 'Slack credential is missing' });
+        continue;
+      }
 
       try {
-        await postToSlack(secret.access_token, config.post_channel ?? '#general', text);
+        await postToSlack(decryptSecret(secret.access_token), config.post_channel ?? '#general', text);
         done.push({ action, status: 'done', channel: config.post_channel ?? '#general' });
       } catch (e: any) {
         done.push({ action, status: 'failed', reason: String(e?.message ?? e) });

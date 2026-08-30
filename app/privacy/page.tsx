@@ -73,9 +73,10 @@ export default function PrivacyPage() {
           Every connection uses OAuth, so you authorise us at the provider and can withdraw that
           authorisation at any time from their settings or ours. We request the narrowest scopes the
           automation you selected actually needs, and we show you each scope in plain English before
-          you approve it. Access and refresh tokens are stored in a restricted table protected by
-          row-level security, reachable only by our server, and encrypted at rest by the database.
-          They are read only for the duration of a run and are never written to logs.
+          you approve it. Access and refresh tokens are encrypted individually with AES-256-GCM
+          before they are stored, under a key the database cannot reach, and are kept in a restricted
+          table protected by row-level security. They are decrypted in memory only for the duration of
+          a run and are never written to logs.
         </p>
 
         <h2 id="ai-processing">AI processing</h2>
