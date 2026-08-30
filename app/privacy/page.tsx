@@ -3,7 +3,7 @@ import type { Metadata } from 'next';
 export const metadata: Metadata = {
   title: 'Privacy Policy — CazoTask',
   description:
-    'How CazoTask collects, uses, stores and deletes your data, including connected accounts, AI processing and your rights under UK GDPR and US state privacy laws.',
+    'How CazoTask collects, uses, stores and deletes your data, including connected accounts, AI processing and your rights under US state privacy laws and the GDPR where it applies.',
 };
 
 export default function PrivacyPage() {
@@ -25,9 +25,10 @@ export default function PrivacyPage() {
 
         <h2 id="who-we-are">Who we are</h2>
         <p>
-          CazoTask is the controller of the personal data described here. We operate in the United
-          Kingdom and the United States and process data under the UK GDPR, the EU GDPR where it
-          applies, and applicable US state privacy laws including the CCPA/CPRA. You can reach our
+          CazoTask is the controller of the personal data described here. We are based in Florida,
+          in the United States, and we store and process data in the United States. We process data
+          under applicable US state privacy laws, including the CCPA/CPRA where you are a California
+          resident, and under the UK and EU GDPR where they apply to you. You can reach our
           privacy team at <a href="mailto:privacy@cazotaskai.com">privacy@cazotaskai.com</a>.
         </p>
 
@@ -92,7 +93,7 @@ export default function PrivacyPage() {
 
         <h2 id="legal-bases">Legal bases</h2>
         <p>
-          Where the UK or EU GDPR applies, we rely on: performance of a contract, to deliver the
+          Where the UK or EU GDPR applies to you, we rely on: performance of a contract, to deliver the
           service you signed up for; legitimate interests, for security, fraud prevention and product
           improvement; consent, for optional marketing email and for the specific scopes you grant at
           connection time; and legal obligation, for tax and accounting records.
@@ -147,8 +148,10 @@ export default function PrivacyPage() {
           restrict processing of your data, to object to processing based on legitimate interests, and
           to withdraw consent. US state residents may also opt out of sale or sharing — we do neither,
           so there is nothing to opt out of. We will not discriminate against you for exercising any
-          of these rights. If you are unhappy with our response, UK residents may complain to the
-          Information Commissioner&apos;s Office.
+          of these rights. If you are unhappy with our response you can escalate: US residents may
+          complain to their state attorney general or to the Federal Trade Commission, UK residents to
+          the Information Commissioner&apos;s Office, and EU residents to their national supervisory
+          authority.
         </p>
 
         <h2 id="children">Children</h2>

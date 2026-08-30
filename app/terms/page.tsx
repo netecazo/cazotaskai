@@ -99,7 +99,8 @@ export default function TermsPage() {
           </li>
           <li>
             <strong>Refunds.</strong> If something is genuinely broken on our side, email us within 14
-            days and we will refund the period. UK and EU consumers keep their statutory rights.
+            days and we will refund the period. Nothing here removes any statutory refund or
+            cancellation right you have under the consumer law of your own country or state.
           </li>
           <li>
             <strong>Price changes.</strong> We will give 30 days&apos; notice by email before any increase
@@ -161,9 +162,11 @@ export default function TermsPage() {
 
         <h2 id="general">General</h2>
         <p>
-          These terms are governed by the laws of England and Wales, and the courts of England and
-          Wales have exclusive jurisdiction, unless mandatory local consumer law in your country says
-          otherwise. If a clause is unenforceable, the rest stands. We may update these terms and will
+          These terms are governed by the laws of the State of Florida, without regard to its
+          conflict-of-laws rules. The state and federal courts located in Florida have exclusive
+          jurisdiction, and both parties consent to venue there, except where mandatory consumer
+          protection law in your own country or state gives you the right to bring a claim elsewhere,
+          which we do not seek to override. If a clause is unenforceable, the rest stands. We may update these terms and will
           email you at least 30 days before a material change takes effect; continuing to use the
           service after that means you accept the new version.
         </p>
