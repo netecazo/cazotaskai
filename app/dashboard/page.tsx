@@ -20,7 +20,7 @@ export default async function OverviewPage() {
   const user = await requireUser();
   if (!user) return null;
 
-  const sb = supabaseServer();
+  const sb = await supabaseServer();
   const period = periodStart();
 
   const [

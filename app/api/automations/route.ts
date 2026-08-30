@@ -3,7 +3,7 @@ import { supabaseServer } from '@/lib/supabase/server';
 import { limitsFor } from '@/lib/plans';
 
 export async function POST(req: Request) {
-  const sb = supabaseServer();
+  const sb = await supabaseServer();
   const { data: { user } } = await sb.auth.getUser();
   if (!user) return NextResponse.json({ error: 'Not signed in' }, { status: 401 });
 

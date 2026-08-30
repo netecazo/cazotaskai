@@ -8,7 +8,7 @@ export default async function AutomationsPage() {
   const user = await requireUser();
   if (!user) return null;
 
-  const sb = supabaseServer();
+  const sb = await supabaseServer();
 
   const [{ data: automations }, { data: templates }] = await Promise.all([
     sb.from('ct_automations')

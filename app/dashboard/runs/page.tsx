@@ -15,7 +15,7 @@ export default async function RunsPage() {
   const user = await requireUser();
   if (!user) return null;
 
-  const sb = supabaseServer();
+  const sb = await supabaseServer();
 
   const [{ data: runs }, { data: automations }, { data: templates }] = await Promise.all([
     sb.from('ct_runs')

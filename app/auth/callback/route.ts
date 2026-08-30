@@ -7,7 +7,7 @@ export async function GET(req: Request) {
   const next = url.searchParams.get('next') ?? '/dashboard';
 
   if (code) {
-    const sb = supabaseServer();
+    const sb = await supabaseServer();
     const { error } = await sb.auth.exchangeCodeForSession(code);
     if (!error) return NextResponse.redirect(new URL(next, url.origin));
   }

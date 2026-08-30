@@ -7,7 +7,7 @@ export async function POST(req: Request) {
   if (!stripeConfigured())
     return NextResponse.json({ error: 'Billing is not configured on this deployment yet.', code: 'no_stripe' }, { status: 503 });
 
-  const sb = supabaseServer();
+  const sb = await supabaseServer();
   const { data: { user } } = await sb.auth.getUser();
   if (!user) return NextResponse.json({ error: 'Not signed in' }, { status: 401 });
 

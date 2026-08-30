@@ -44,7 +44,7 @@ export default async function ConnectionsPage({
   const user = await requireUser();
   if (!user) return null;
 
-  const sb = supabaseServer();
+  const sb = await supabaseServer();
   const { data: connections } = await sb
     .from('ct_connections')
     .select('provider, status, external_account, created_at')

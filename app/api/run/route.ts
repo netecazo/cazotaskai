@@ -7,7 +7,7 @@ import { executeAutomation } from '@/lib/engine';
 export const maxDuration = 60;
 
 export async function POST(req: Request) {
-  const sb = supabaseServer();
+  const sb = await supabaseServer();
   const { data: { user } } = await sb.auth.getUser();
   if (!user) return NextResponse.json({ error: 'Not signed in' }, { status: 401 });
 

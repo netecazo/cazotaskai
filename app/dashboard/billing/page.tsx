@@ -32,7 +32,7 @@ export default async function BillingPage({
   const user = await requireUser();
   if (!user) return null;
 
-  const sb = supabaseServer();
+  const sb = await supabaseServer();
   const period = periodStart();
 
   const [{ data: profile }, { data: usage }, { count: activeCount }] = await Promise.all([

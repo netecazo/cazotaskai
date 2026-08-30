@@ -7,7 +7,7 @@ export default async function ApprovalsPage() {
   const user = await requireUser();
   if (!user) return null;
 
-  const sb = supabaseServer();
+  const sb = await supabaseServer();
 
   const { data: approvals } = await sb
     .from('ct_approvals')
