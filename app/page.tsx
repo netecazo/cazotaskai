@@ -310,7 +310,7 @@ export default function HomePage() {
               <article className="glass step rv">
                 <div className="step-n">2</div>
                 <h3>Pick an automation</h3>
-                <p>Browse 40+ finished workflows by the job they do — inbox, meetings, invoices, follow-ups, reporting. Read what it will do, then switch it on.</p>
+                <p>Browse 40+ finished workflows by the job they do — inbox, meetings, invoices, follow-ups, reporting. Read what it will do, then switch on the ones whose accounts you can connect today.</p>
                 <div className="step-art">
                   <svg viewBox="0 0 340 160" role="img" aria-label="Choosing an automation from a list, with a toggle switching to on.">
                     <defs><linearGradient id="s2" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stopColor="#6D5EF8"/><stop offset="100%" stopColor="#22D3EE"/></linearGradient></defs>
@@ -383,8 +383,9 @@ export default function HomePage() {
             <div className="sec-head rv">
               <span className="eyebrow">The library</span>
               <h2 className="h1">Forty-plus automations,<br />already finished</h2>
-              <p className="lede">A sample of what is switched on most often. Each one is live the moment
-              you connect the account it needs.</p>
+              <p className="lede">A sample of what the library covers. Each one is built and tested;
+              it goes live once the account it needs is connectable — Slack today, the rest as each
+              provider review completes.</p>
             </div>
 
             <div className="lib">
@@ -536,7 +537,7 @@ export default function HomePage() {
             <div className="faq">
               <details className="glass q rv">
                 <summary>Do I need to know how to build automations?</summary>
-                <div className="a">No. That is the whole premise. Every automation in the library is already built, tested and wired end to end. You choose one, connect the account it needs, and it starts running. There is no canvas to drag nodes around on.</div>
+                <div className="a">No. That is the whole premise. Every automation in the library is already built, tested and wired end to end. You choose one, connect the account it needs, and it starts running. There is no canvas to drag nodes around on. Today that means Slack; the other connectors are finished but waiting on provider review, and the dashboard shows the live status of each.</div>
               </details>
 
               <details className="glass q rv">
@@ -546,7 +547,7 @@ export default function HomePage() {
 
               <details className="glass q rv">
                 <summary>Which tools does it connect to?</summary>
-                <div className="a">Gmail, Outlook, Google Calendar, Slack, Notion, Google Sheets, HubSpot, Stripe, QuickBooks, Zoom, Google Meet and Microsoft Teams, with more added most months. If an automation needs a tool you do not use, it tells you before you switch it on.</div>
+                <div className="a">Slack is connectable today. Gmail, Outlook, Google Calendar, Zoom and Microsoft Teams are built and are awaiting OAuth review with each provider. Notion, Google Sheets, HubSpot, Stripe and QuickBooks are built and waiting on key support. Your dashboard shows the current status of every one of them, and an automation tells you which tool it needs before you switch it on.</div>
               </details>
 
               <details className="glass q rv">
