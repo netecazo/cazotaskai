@@ -7,7 +7,7 @@ export async function GET(req: Request) {
   if (!slackConfigured())
     return NextResponse.redirect(`${origin}/dashboard/connections?error=slack_not_configured`);
 
-  const sb = supabaseServer();
+  const sb = await supabaseServer();
   const { data: { user } } = await sb.auth.getUser();
   if (!user) return NextResponse.redirect(`${origin}/login`);
 

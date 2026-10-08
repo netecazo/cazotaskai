@@ -7,7 +7,7 @@ export default async function LibraryPage() {
   const user = await requireUser();
   if (!user) return null;
 
-  const sb = supabaseServer();
+  const sb = await supabaseServer();
 
   const [{ data: templates }, { data: mine }] = await Promise.all([
     sb.from('ct_templates')

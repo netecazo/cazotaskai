@@ -10,7 +10,7 @@ export async function GET(req: Request) {
   const code = url.searchParams.get('code');
   const state = url.searchParams.get('state');
 
-  const sb = supabaseServer();
+  const sb = await supabaseServer();
   const { data: { user } } = await sb.auth.getUser();
   if (!user || !code || state !== user.id)
     return NextResponse.redirect(`${origin}/dashboard/connections?error=slack_state`);

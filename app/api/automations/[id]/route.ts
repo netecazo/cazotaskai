@@ -1,8 +1,9 @@
 import { NextResponse } from 'next/server';
 import { supabaseServer } from '@/lib/supabase/server';
 
-export async function PATCH(req: Request, { params }: { params: { id: string } }) {
-  const sb = supabaseServer();
+export async function PATCH(req: Request, { params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params;
+  const sb = await supabaseServer();
   const { data: { user } } = await sb.auth.getUser();
   if (!user) return NextResponse.json({ error: 'Not signed in' }, { status: 401 });
 
@@ -15,17 +16,18 @@ export async function PATCH(req: Request, { params }: { params: { id: string } }
   if (body.config && typeof body.config === 'object') patch.config = body.config;
 
   const { error } = await sb.from('ct_automations').update(patch)
-    .eq('id', params.id).eq('user_id', user.id);
+    .eq('id', id).eq('user_id', user.id);
   if (error) return NextResponse.json({ error: error.message }, { status: 400 });
   return NextResponse.json({ ok: true });
 }
 
-export async function DELETE(_req: Request, { params }: { params: { id: string } }) {
-  const sb = supabaseServer();
+export async function DELETE(_req: Request, { params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params;
+  const sb = await supabaseServer();
   const { data: { user } } = await sb.auth.getUser();
   if (!user) return NextResponse.json({ error: 'Not signed in' }, { status: 401 });
   const { error } = await sb.from('ct_automations').delete()
-    .eq('id', params.id).eq('user_id', user.id);
+    .eq('id', id).eq('user_id', user.id);
   if (error) return NextResponse.json({ error: error.message }, { status: 400 });
   return NextResponse.json({ ok: true });
 }

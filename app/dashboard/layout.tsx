@@ -15,7 +15,7 @@ export default async function DashboardLayout({
   const user = await requireUser();
   if (!user) redirect('/login');
 
-  const sb = supabaseServer();
+  const sb = await supabaseServer();
 
   const [{ data: profile }, { count: pendingApprovals }] = await Promise.all([
     sb.from('ct_profiles')

@@ -7,11 +7,12 @@ import { executeAutomation } from '@/lib/engine';
 export const maxDuration = 60;
 
 /** Inbound trigger. The token in the path is the automation's shared secret. */
-export async function POST(req: Request, { params }: { params: { token: string } }) {
+export async function POST(req: Request, { params }: { params: Promise<{ token: string }> }) {
+  const { token } = await params;
   const db = supabaseAdmin();
 
   const { data: automation } = await db.from('ct_automations')
-    .select('id, enabled').eq('webhook_token', params.token).maybeSingle();
+    .select('id, enabled').eq('webhook_token', token).maybeSingle();
 
   if (!automation) return NextResponse.json({ error: 'Unknown hook' }, { status: 404 });
   if (!automation.enabled) return NextResponse.json({ error: 'Automation is paused' }, { status: 409 });

@@ -3,8 +3,9 @@ import { supabaseServer } from '@/lib/supabase/server';
 import { supabaseAdmin } from '@/lib/supabase/admin';
 import { periodStart } from '@/lib/plans';
 
-export async function POST(req: Request, { params }: { params: { id: string } }) {
-  const sb = supabaseServer();
+export async function POST(req: Request, { params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params;
+  const sb = await supabaseServer();
   const { data: { user } } = await sb.auth.getUser();
   if (!user) return NextResponse.json({ error: 'Not signed in' }, { status: 401 });
 
@@ -13,7 +14,7 @@ export async function POST(req: Request, { params }: { params: { id: string } })
     return NextResponse.json({ error: 'decision must be approved or rejected' }, { status: 400 });
 
   const { data: approval } = await sb.from('ct_approvals')
-    .select('id, run_id, status').eq('id', params.id).eq('user_id', user.id).single();
+    .select('id, run_id, status').eq('id', id).eq('user_id', user.id).single();
   if (!approval) return NextResponse.json({ error: 'Not found' }, { status: 404 });
   if (approval.status !== 'pending')
     return NextResponse.json({ error: 'Already decided' }, { status: 409 });

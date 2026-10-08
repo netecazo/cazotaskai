@@ -10,17 +10,18 @@ export const dynamic = 'force-dynamic';
 export default async function AutomationDetailPage({
   params,
 }: {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }) {
+  const { id } = await params;
   const user = await requireUser();
   if (!user) return null;
 
-  const sb = supabaseServer();
+  const sb = await supabaseServer();
 
   const { data: automation } = await sb
     .from('ct_automations')
     .select('id, name, template_slug, enabled, config, approval_mode, schedule, webhook_token, last_run_at, created_at')
-    .eq('id', params.id)
+    .eq('id', id)
     .eq('user_id', user.id)
     .maybeSingle();
 
